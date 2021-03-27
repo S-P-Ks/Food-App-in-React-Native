@@ -31,18 +31,13 @@ function Users() {
   // Using the context
   const product = useContext(ProductContext);
 
-  const buyItems = (id) => {
-    product.buyedItems[id]++;
+  const buyItems = (id, num) => {
+    product.buyedItems[id] = num;
     console.log(product.buyedItems);
   };
 
-  const removeItems = (id) => {
-    if (product.buyedItems[id] == 0) {
-      product.buyedItems[id] = 0;
-    } else {
-      product.buyedItems[id]--;
-    }
-    console.log(product.buyedItems);
+  const removeItems = (id, num) => {
+    product.buyedItems[id] = num;
   };
 
   useEffect(() => {

@@ -22,6 +22,7 @@ function DetailsScreen(props) {
   } = route.params;
 
   const product = useContext(ProductContext);
+  const [num, setnum] = useState(0);
 
   useEffect(() => {}, []);
 
@@ -53,10 +54,26 @@ function DetailsScreen(props) {
             {param1}-{param2}
           </Text>
           <Text>
-            No of {param1} purchased :- {no}
+            No of {param1} purchased :- {num}
           </Text>
-          <Button title="Add Item" onPress={() => buyItems(id - 1)} />
-          <Button title="Remove Item" onPress={() => removeItems(id - 1)} />
+          <Button
+            title="Add Item"
+            onPress={() => {
+              setnum(num + 1);
+              buyItems(id - 1, num);
+            }}
+          />
+          <Button
+            title="Remove Item"
+            onPress={() => {
+              if (num == 0) {
+                setnum(0);
+              } else {
+                setnum(num - 1);
+              }
+              removeItems(id - 1, num);
+            }}
+          />
         </View>
       </View>
       <View></View>
